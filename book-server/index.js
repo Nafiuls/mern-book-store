@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
 // ----------------------------------------
 
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const { configDotenv } = require("dotenv");
 const uri = `mongodb+srv://snafiul700:${process.env.DB_PASS}@cluster0.oeqsh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -33,6 +33,49 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+    const booksCollection = client.db("BookInventory").collection("books");
+
+    // insert a book data into the database
+    app.post("/upload-book", async (req, res) => {
+      const book = req.body;
+      const result = await booksCollection.insertOne(book);
+      res.send(result);
+    });
+
+    // get all books
+    app.get("/books", async (req, res) => {
+      const result = await booksCollection.find().toArray();
+      res.send(result);
+    });
+
+    // update a book with PATCH or PUT
+    app.patch("/update-book/:id", async (req, res) => {
+      const id = req.params.id;
+      const updateBook = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+
+      const updateDoc = {
+        $set: {
+          ...updateBook,
+        },
+      };
+      const result = await booksCollection.updateOne(
+        filter,
+        updateDoc,
+        options
+      );
+      res.send(result);
+    });
+
+    // delete a book
+    app.delete("/delete-book/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await booksCollection.deleteOne(query);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
