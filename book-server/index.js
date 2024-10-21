@@ -43,8 +43,18 @@ async function run() {
     });
 
     // get all books
+    // app.get("/books", async (req, res) => {
+    //   const result = await booksCollection.find().toArray();
+    //   res.send(result);
+    // });
+
+    // filter books by category
     app.get("/books", async (req, res) => {
-      const result = await booksCollection.find().toArray();
+      let query = {};
+      if (req.query?.category) {
+        query = { category: req.query.category };
+      }
+      const result = await booksCollection.find(query).toArray();
       res.send(result);
     });
 
