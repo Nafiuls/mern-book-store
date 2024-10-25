@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
-    <div className="max-w-7xl mx-auto">
+    <div>
       {/* navbar */}
       <Navbar />
       <main className="min-h-screen">
