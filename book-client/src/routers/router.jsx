@@ -5,6 +5,7 @@ import About from "../pages/about/About";
 import Shop from "../pages/shop/Shop";
 import SellBooks from "../pages/sell books/SellBooks";
 import Blog from "../pages/blog/Blog";
+import SignleBook from "../shop/SignleBook";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,12 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/book/:id",
+        element: <SignleBook />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/book/${params?.id}`),
       },
     ],
   },

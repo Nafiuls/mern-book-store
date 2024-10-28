@@ -2,7 +2,7 @@ import Slide from "./Slide";
 
 const Banner = () => {
   return (
-    <div className="bg-teal-100 flex items-center px-2 lg:px-24">
+    <div className="bg-teal-100 flex items-center px-6 lg:px-24">
       <div className="flex flex-col lg:flex-row items-center gap-12 py-40 justify-between w-full">
         {/* banner content */}
         <div className="md:w-1/2 w-full space-y-8">

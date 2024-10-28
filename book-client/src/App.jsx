@@ -6,7 +6,7 @@ const App = () => {
     <div>
       {/* navbar */}
       <Navbar />
-      <main className="min-h-screen">
+      <main className="overflow-hidden min-h-screen ">
         <Outlet />
       </main>
       <footer>footer</footer>
