@@ -1,8 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 
 const SignleBook = () => {
-  const { _id } = useLoaderData();
-  return <div className="mt-28 px-4 lg:px-24">{_id}</div>;
+  const { bookTitle, imageURL } = useLoaderData();
+  return (
+    <div className="mt-28 px-4 lg:px-24">
+      <img src={imageURL} alt="" className="h-96" />
+      <h2>{bookTitle}</h2>
+    </div>
+  );
 };
 
 export default SignleBook;

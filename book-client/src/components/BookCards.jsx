@@ -20,7 +20,7 @@ const BookCards = ({ headline, books }) => {
         {headline}
       </h2>
       {/* cards */}
-      <div>
+      <div className="mt-12">
         <Swiper
           slidesPerView={1}
           spaceBetween={10}
@@ -47,17 +47,19 @@ const BookCards = ({ headline, books }) => {
           {books.map((book) => (
             <SwiperSlide key={book._id}>
               <Link to={`/book/${book?._id}`}>
-                <div className="relative">
+                <div className="border-2 bg-[#CCFBF1] border-[#CCFBF1] p-2 rounded-md relative">
                   <img className="w-full" src={book?.imageURL} alt="" />
                   <div className="bg-blue-700 hover:bg-black p-2 rounded absolute top-3 right-3">
                     <FaCartShopping className="size-4 text-white" />
                   </div>
-                  <div>
-                    <h3>{book?.bookTitle}</h3>
-                    <p>{book?.authorName}</p>
+                  <div className="mt-2">
+                    <h3 className="mb-1 font-bold text-xl">
+                      {book?.bookTitle}
+                    </h3>
+                    <p className="font-semibold">{book?.authorName}</p>
                   </div>
                   <div>
-                    <p>$10</p>
+                    <p className="text-xl text-green-500">$10</p>
                   </div>
                 </div>
               </Link>
