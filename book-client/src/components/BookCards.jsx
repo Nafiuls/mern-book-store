@@ -48,7 +48,11 @@ const BookCards = ({ headline, books }) => {
             <SwiperSlide key={book._id}>
               <Link to={`/book/${book?._id}`}>
                 <div className="border-2 bg-[#CCFBF1] border-[#CCFBF1] p-2 rounded-md relative">
-                  <img className="w-full" src={book?.imageURL} alt="" />
+                  <img
+                    className="w-full mx-auto lg:h-80 ob"
+                    src={book?.imageURL}
+                    alt=""
+                  />
                   <div className="bg-blue-700 hover:bg-black p-2 rounded absolute top-3 right-3">
                     <FaCartShopping className="size-4 text-white" />
                   </div>
