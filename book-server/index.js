@@ -64,7 +64,6 @@ async function run() {
       const updateBook = req.body;
       const filter = { _id: new ObjectId(id) };
       const options = { upsert: true };
-
       const updateDoc = {
         $set: {
           ...updateBook,
